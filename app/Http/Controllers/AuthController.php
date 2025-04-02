@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AbUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -25,7 +26,7 @@ class AuthController extends Controller
             $request->session()->put('abalo_user', $user->ab_name);
             $request->session()->put('abalo_mail', $user->ab_mail);
             $request->session()->put('abalo_time', time());
-            return redirect()->route('testdata');
+            return redirect()->route('articles');
         }
 
         return redirect()->route('login')->with('error', 'Falsche Anmeldedaten.');
@@ -34,20 +35,24 @@ class AuthController extends Controller
     // Registrieren eines neuen Benutzers
     public function register(Request $request)
     {
-        // Validierung
+        // Validation
         $request->validate([
             'ab_name' => 'required|unique:ab_user',
             'ab_mail' => 'required|email|unique:ab_user',
             'ab_password' => 'required|confirmed|min:6',
         ]);
 
-        // Benutzer erstellen
-        $user = new AbUser();
-        $user->ab_name = $request->ab_name;
-        $user->ab_mail = $request->ab_mail;
-        $user->ab_password = Hash::make($request->ab_password);
-        $user->save();
+        // Prepare user data from the request input
+        $userData = [
+            'ab_name' => $request->ab_name,         // User's name
+            'ab_mail' => $request->ab_mail,         // User's email
+            'ab_password' => Hash::make($request->ab_password), // Hash the password before saving
+        ];
 
+        // Insert the user data into the database (no 'id' field provided)
+        DB::table('ab_user')->insert($userData);
+
+        // Redirect with a success message
         return redirect()->route('login')->with('success', 'Benutzer erfolgreich registriert. Bitte melden Sie sich an.');
     }
 

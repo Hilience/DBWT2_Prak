@@ -11,7 +11,7 @@ Route::get('/', function () {
 });
 
 Route::get('/testdata', [AbTestDataController::class, 'testindex'])->name('testdata');
-Route::get('/articles', [AbArticleController::class, 'articles']);
+Route::get('/articles', [AbArticleController::class, 'articles'])->name('articles');
 
 Route::get('/login', function () {
     return view('anmeldeseite'); // Anmeldeseite anzeigen

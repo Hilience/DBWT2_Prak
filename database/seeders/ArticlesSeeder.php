@@ -24,7 +24,7 @@ class ArticlesSeeder extends Seeder
 
             // Zeilen einlesen und verarbeiten
             while (($data = fgetcsv($handle, 1000, ';')) !== false) {
-                $ab_price = floatval(str_replace(',', '.', $data[2]));
+                $ab_price = round(floatval(str_replace(',', '.', $data[2])));
 
                 $articleData = [
                     'id' => $data[0],

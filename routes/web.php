@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AbTestDataController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AbArticleController;
-
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,4 +28,7 @@ Route::post('/login', [AuthController::class, 'login']); // Login mit POST an Au
 // Route für das Registrieren eines neuen Benutzers
 Route::post('/register', [AuthController::class, 'register']); // Registrierung mit POST an AuthController
 
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');

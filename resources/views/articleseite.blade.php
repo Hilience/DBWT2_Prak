@@ -51,17 +51,25 @@
             <td>{{ $article->ab_price }}</td>
             <td>{{ $article->ab_description }}</td>
             <td>
-                @php
-                    // Bildpfad erstellen (z.B. images/1.png)
-                    $imagePath = public_path('images/' . $article->id . '.jpg');
-                @endphp
+            @php
+                // Unterstützte Bildformate
+                $extensions = ['jpg', 'jpeg', 'png'];
+                $imageUrl = null;
 
-                    <!-- Bild anzeigen, wenn vorhanden -->
-                @if(file_exists($imagePath))
-                    <img src="{{ asset('images/' . $article->id . '.jpg') }}" alt="{{ $article->ab_name }}" width="100" height="100">
-                @else
-                    <p>Kein Bild verfügbar</p>
-                @endif
+                foreach ($extensions as $ext) {
+                    $imagePath = public_path("images/{$article->id}.{$ext}");
+                    if (file_exists($imagePath)) {
+                        $imageUrl = asset("images/{$article->id}.{$ext}");
+                        break;
+                    }
+                }
+            @endphp
+
+            @if($imageUrl)
+                <img src="{{ $imageUrl }}" alt="{{ $article->ab_name }}" width="300" height="200">
+            @else
+                <p>Kein Bild verfügbar</p>
+            @endif
             </td>
         </tr>
     @empty

@@ -62,20 +62,6 @@ class AuthController extends Controller
         $request->session()->flush(); // Löscht alle Session-Daten
         return redirect()->route('login');
     }
-
-    // Prüfen, ob der Benutzer eingeloggt ist
-    public function isLoggedIn(Request $request)
-    {
-        if ($request->session()->has('abalo_user')) {
-            $r["user"] = $request->session()->get('abalo_user');
-            $r["time"] = $request->session()->get('abalo_time');
-            $r["mail"] = $request->session()->get('abalo_mail');
-            $r["auth"] = "true";
-        } else {
-            $r["auth"] = "false";
-        }
-        return response()->json($r);
-    }
 }
 
 /*
@@ -101,4 +87,5 @@ public function isLoggedIn(Request $request) {
     }
     else $r["auth"]="false";
     return response()->json($r);
-}*/
+}
+*/

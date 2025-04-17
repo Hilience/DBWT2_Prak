@@ -2,8 +2,8 @@
 
 import {menuData} from "./HomeMenuData.js";
 
-
-function createMenu(menu, parent) {
+// Funktion zum Erstellen des Menüs
+function createMenu(menu) {
     const ul = document.createElement("ul");
 
     menu.forEach(function(item) {
@@ -27,7 +27,9 @@ function createMenu(menu, parent) {
                 let visibility = childUl.style.display === "none" ? "block" : "none";
                 setVisibilityForAll(childUl, visibility);   // Damit alle untermenüs wieder geschlossen werden wenn man das obermenü schließt
             };
+            li.classList.add("has-submenu"); // Für Hover
         }
+
         ul.appendChild(li);
     });
     return ul;
@@ -41,5 +43,12 @@ function setVisibilityForAll(node, visibility){
         });
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const navContainer = document.getElementById("nav");
+    if (navContainer) {
+        navContainer.appendChild(createMenu(menuData));
+    }
+});
 
 document.getElementById("nav").appendChild(createMenu(menuData));

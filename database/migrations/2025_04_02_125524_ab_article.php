@@ -12,14 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ab_article', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Automatisch eine inkrementierte id-Spalte
             $table->string('ab_name', 80);
             $table->integer('ab_price');
             $table->string('ab_description', 1000);
             $table->unsignedBigInteger('ab_creator_id');
-            $table->timestamp('ab_createdate');
+            $table->timestamps(); // Verwenden von created_at und updated_at
             $table->foreign('ab_creator_id')->references('id')->on('ab_user')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

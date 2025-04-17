@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AbTestDataController;
 use App\Http\Controllers\AuthController;
@@ -15,6 +14,12 @@ Route::get('/home', [HomeController::class, 'homeindex'])->name('home');
 
 Route::get('/testdata', [AbTestDataController::class, 'testindex'])->name('testdata');
 Route::get('/articles', [AbArticleController::class, 'articles'])->name('articles');
+
+// Route für die Seite zum Hinzufügen eines neuen Artikels
+Route::get('/newarticle', [AbArticleController::class, 'showCreateForm'])->name('newArticle');
+
+// Route für das Speichern des neuen Artikels
+Route::post('/articles', [AbArticleController::class, 'store'])->name('storeArticle');
 
 Route::get('/login', function () {
     return view('anmeldeseite'); // Anmeldeseite anzeigen

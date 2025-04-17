@@ -1,18 +1,38 @@
+/* Header Layout */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Menü Styling */
 #nav {
     font-family: Arial, sans-serif;
 }
 
 #nav ul {
     list-style: none;
-    padding: 10px;
     margin: 0;
+    padding: 0;
 }
 
 #nav > ul {
     display: flex;
     gap: 2rem;
-    background-color: #007BFF;
-    padding: 1rem;
+    padding: 0;
 }
 
 #nav li {
@@ -20,15 +40,15 @@
     color: white;
     cursor: pointer;
     padding: 0.5rem 1rem;
-    transition: background 0.5s ease;
+    transition: background 0.3s ease;
 }
 
 #nav li:hover {
     background-color: #278dfd;
 }
 
-/* Untermenüs */
-.submenu {
+/* Submenü Styling */
+.has-submenu .submenu {
     display: none;
     position: absolute;
     top: 100%;
@@ -40,12 +60,40 @@
     z-index: 10;
 }
 
+.has-submenu:hover .submenu {
+    display: block;
+}
+
 .submenu li {
-    color: white;
     padding: 0.5rem 1rem;
     white-space: nowrap;
 }
 
 .submenu li:hover {
     background-color: #278dfd;
+}
+
+/* Benutzerinfo rechts */
+.user-info {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.logout-button {
+    padding: 8px 12px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #c82333;
 }

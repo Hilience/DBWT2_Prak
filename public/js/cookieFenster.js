@@ -19,21 +19,40 @@ function setCookie(name, value, days) {
 
 window.addEventListener("load", () => {
     if (!getCookie("cookieConsent")) {
-        let banner = document.createElement("div");
-        banner.style.position = "fixed";
-        banner.style.bottom = "0";
-        banner.style.left = "0";
-        banner.style.width = "100%";
-        banner.style.background = "#333";
-        banner.style.color = "#fff";
-        banner.style.padding = "10px";
-        banner.style.textAlign = "center";
-        banner.innerHTML = 'Diese Website verwendet Cookies. <button id="acceptCookies">OK</button>';
-        document.body.appendChild(banner);
+        let popup = document.createElement("div");
+        popup.style.position = "fixed";
+        popup.style.top = "50%";
+        popup.style.left = "50%";
+        popup.style.transform = "translate(-50%, -50%)";
+        popup.style.backgroundColor = "#fff";
+        popup.style.color = "#333";
+        popup.style.padding = "20px";
+        popup.style.borderRadius = "8px";
+        popup.style.boxShadow = "0px 4px 12px rgba(0, 0, 0, 0.1)";
+        popup.style.zIndex = "9999";
+        popup.style.width = "auto";
+        popup.style.maxWidth = "400px";
+        popup.style.textAlign = "center";
+
+        popup.innerHTML = `
+            <p>Diese Website verwendet Cookies, um Ihnen das beste Erlebnis zu bieten. Bitte stimmen Sie der Nutzung von Cookies zu.</p>
+            <button id="acceptCookies" style="
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            ">OK</button>
+        `;
+
+        document.body.appendChild(popup);
 
         document.getElementById("acceptCookies").onclick = function() {
             setCookie("cookieConsent", "true", 365);
-            banner.remove();
+            popup.remove();
         };
     }
 });

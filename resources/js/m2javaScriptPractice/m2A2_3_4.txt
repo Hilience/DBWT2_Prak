@@ -1,0 +1,57 @@
+
+// A3 -----------------------------
+1. Chrome 66,16 %
+2. Safari 17,62 %
+3. Edge 5.17 %
+4. Firefox 2,52 %
+source: https://gs.statcounter.com/browser-market-share
+b) - Auf die neutralität der Quelle
+c) -
+Neuste Version von JavaScript (ES6)
+Browser     Seit Version    Datum
+Chrome      51              May 2016
+Firefox     52              Mar 2017
+Edge        14              Aug 2016
+Safari      10              Sep 2016
+Opera       38              Jun 2016
+
+Infos zu weiteren Versionen und Quelle: https://www.w3schools.com/js/js_versions.asp
+
+d) -
+Chrome, Safari und Edge, da diese Webbrowser die am weitesten verbreiteten Browser sind.
+
+// A4 -----------------------------
+Vergleich von JavaScript und C++
+6 Unterschiede:
+1. dynamisch typisiert vs nicht dynamisch typisiert:
+let var;  // JS kann alle Typen annehmen
+int var; // C++ Typ ist festgelegt
+
+2. Rückgabetyp von Funktionen:
+function xy() { ... }   // JS der Rückgabetyp muss nicht angegeben werden, auch nicht ob es einen gibt oder nicht.
+void function xy() { ... }  // C++ der Rückgabetyp ist fest definiert
+
+3. Ausführung:
+// JS wird vom Browser von einer Engine direkt ausgeführt
+// C++ wird compiliert zu Maschinencode und dann ausgeführt
+
+4. Speicherverwaltung
+// JS automatische Speicherverwaltung
+// C++ Speicherverwaltung erfolgt größtenteils manuell
+
+5. Anwendungsbereich
+// JS fast ausschließlich für webentwicklung
+// C++ so gut wie nie für webentwicklung
+
+6. Pointer
+// JS Referenzen sind versteckt, keine Pointer
+// C++ Referenzen müssen selbst behandelt werden, es gibt pointer etc.
+
+6 Gemeinsamkeiten:
+1. Beides sind imperative Sprachen
+2. Beides sind objektorientierte Sprachen
+3. Es gibt Variablen und Funktionen
+4. Es gibt die gleichen Kontrollstrukturen, if, else, switch, while, do ... while
+5. Es können andere Codekonstrukte importiert werden
+6. Es gibt Konstanten
+

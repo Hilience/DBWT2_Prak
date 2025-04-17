@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AbTestDataController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AbArticleController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {

@@ -60,10 +60,6 @@
     z-index: 10;
 }
 
-.has-submenu:hover .submenu {
-    display: block;
-}
-
 .submenu li {
     padding: 0.5rem 1rem;
     white-space: nowrap;

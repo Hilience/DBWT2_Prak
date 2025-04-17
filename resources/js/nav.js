@@ -18,7 +18,7 @@ function createMenu(menu) {     // Funktion zum Erstellen des Menüs
             li.classList.add("toggle");
             li.classList.add("has-submenu"); // Für Hover
 
-            const childUl = createMenu(item.children, li);  // Rekursiv das menü für untermenüs erstellen
+            const childUl = createMenu(item.children);  // Rekursiv das menü für untermenüs erstellen
             childUl.classList.add("submenu");
             li.appendChild(childUl);
 

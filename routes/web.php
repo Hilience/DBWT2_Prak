@@ -10,6 +10,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', [HomeController::class, 'homeindex'])->name('home');
+
 Route::get('/testdata', [AbTestDataController::class, 'testindex'])->name('testdata');
 Route::get('/articles', [AbArticleController::class, 'articles'])->name('articles');
 

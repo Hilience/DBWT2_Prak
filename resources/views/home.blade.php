@@ -6,6 +6,14 @@
     <script src="/resources/js/cookieFenster.js"></script>
 </head>
 <body>
+    <div id="popupOverlay">
+        <div id="popupBox">
+            <p>Cookies Einstellungen</p>
+            <button onclick="handleYes()">akzeptieren</button>
+            <button onclick="handleNo()">Ablehnen</button>
+        </div>
+    </div>
+
     <nav id="nav"></nav>
 
     <footer id="cookie_check">

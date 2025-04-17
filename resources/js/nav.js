@@ -44,11 +44,4 @@ function setVisibilityForAll(node, visibility){
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const navContainer = document.getElementById("nav");
-    if (navContainer) {
-        navContainer.appendChild(createMenu(menuData));
-    }
-});
-
 document.getElementById("nav").appendChild(createMenu(menuData));

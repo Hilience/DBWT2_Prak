@@ -2,32 +2,32 @@
 
 import {menuData} from "./HomeMenuData.js";
 
-// Funktion zum Erstellen des Menüs
-function createMenu(menu) {
+function createMenu(menu) {     // Funktion zum Erstellen des Menüs
     const ul = document.createElement("ul");
 
     menu.forEach(function(item) {
-        // Fuer jedes element der Liste ein li tag erstellen
-        const li = document.createElement("li");
+        const li = document.createElement("li");    // Fuer jedes element der Liste ein li tag erstellen
         li.textContent = item.title;
 
-        // Falls das element ein url attribut hat, passenden link erstellen.
-        if(item.url){
+
+        if(item.url){    // Falls das element ein url attribut hat, passenden link erstellen.
             li.onclick = () => window.location.href = item.url;
         }
 
-        // Falls das element Kinder hat, rekursiv das passende menu erstellen
-        if (item.children) {
+        if (item.children) {    // Falls das element Kinder hat, rekursiv das passende menu erstellen
             li.classList.add("toggle");
-            const childUl = createMenu(item.children, li);
+            li.classList.add("has-submenu"); // Für Hover
+
+            const childUl = createMenu(item.children, li);  // Rekursiv das menü für untermenüs erstellen
             childUl.classList.add("submenu");
             li.appendChild(childUl);
+
             li.onclick = function(e) {
                 e.stopPropagation();    // Verhindert das in bubbling phase parent auch gecklickt wird
                 let visibility = childUl.style.display === "none" ? "block" : "none";
                 setVisibilityForAll(childUl, visibility);   // Damit alle untermenüs wieder geschlossen werden wenn man das obermenü schließt
             };
-            li.classList.add("has-submenu"); // Für Hover
+
         }
 
         ul.appendChild(li);

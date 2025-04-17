@@ -64,21 +64,4 @@ class AuthController extends Controller
         $request->session()->flush(); // Löscht alle Session-Daten
         return redirect()->route('login');
     }
-
-    // Methode zum Abrufen der Benutzer-ID aus der Session
-    public function getUserId(Request $request)
-    {
-        // Überprüfen, ob der Benutzer angemeldet ist
-        if ($request->session()->has('abalo_user_id')) {
-            // Benutzer-ID aus der Session zurückgeben
-            return response()->json([
-                'user_id' => $request->session()->get('abalo_user_id')
-            ]);
-        }
-
-        // Wenn der Benutzer nicht angemeldet ist
-        return response()->json([
-            'error' => 'Benutzer nicht angemeldet'
-        ], 401);
-    }
 }

@@ -16,7 +16,7 @@ Route::get('/testdata', [AbTestDataController::class, 'testindex'])->name('testd
 Route::get('/articles', [AbArticleController::class, 'articles'])->name('articles');
 
 // Route für die Seite zum Hinzufügen eines neuen Artikels
-Route::get('/newarticle', [AbArticleController::class, 'showCreateForm'])->name('newArticle');
+Route::get('/createarticle', [AbArticleController::class, 'showCreateForm'])->name('createArticle');
 
 // Route für das Speichern des neuen Artikels
 Route::post('/articles', [AbArticleController::class, 'store'])->name('storeArticle');

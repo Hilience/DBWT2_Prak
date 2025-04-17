@@ -55,7 +55,6 @@
                 // Unterstützte Bildformate
                 $extensions = ['jpg', 'jpeg', 'png'];
                 $imageUrl = null;
-
                 foreach ($extensions as $ext) {
                     $imagePath = public_path("images/{$article->id}.{$ext}");
                     if (file_exists($imagePath)) {

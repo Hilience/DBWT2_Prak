@@ -73,13 +73,14 @@ console.log('Uppercase: ', string.toUpperCase()); */
 import {getMaxPreis, getMinPreisProdukt, getPreisSum, getGesamtWert, getAnzahlProdukteOfKategorie} from "../articleFunctions.js";
 import {data} from "../data.js";
 
-document.getElementById("out").innerHTML += 'Dieser Artikel kostet am meisten: ' + getMaxPreis(data) + "<br>";
-document.getElementById("out").innerHTML += 'Das Objekt das am wenigsten kostet: ' + JSON.stringify(getMinPreisProdukt(data)) + "<br>";
-document.getElementById('out').innerHTML += 'Die Summe der Preise: ' + getPreisSum(data) + '<br>';
-document.getElementById('out').innerHTML += 'Der gesamte Wert beträgt: ' + getGesamtWert(data) + '<br>';
+let out = document.getElementById("out");
+out.innerHTML += 'Dieser Artikel kostet am meisten: ' + getMaxPreis(data) + "<br>";
+out.innerHTML += 'Das Objekt das am wenigsten kostet: ' + JSON.stringify(getMinPreisProdukt(data)) + "<br>";
+out.innerHTML += 'Die Summe der Preise: ' + getPreisSum(data) + '<br>';
+out.innerHTML += 'Der gesamte Wert beträgt: ' + getGesamtWert(data) + '<br>';
 let kategorie = 'Spielzeug';
 let anzProdukte = getAnzahlProdukteOfKategorie(data, kategorie);
 if(typeof anzProdukte !== "number")
-    document.getElementById('out').innerHTML += anzProdukte;
+    out.innerHTML += anzProdukte;
 else
     document.getElementById('out').innerHTML += 'In der Kategorie ' + kategorie + ' gibt es ' + getAnzahlProdukteOfKategorie(data, kategorie) + ' Produkte<br>';

@@ -6,10 +6,12 @@
     <title>Home</title>
 </head>
 <body>
-<nav id="nav"></nav>
+    <nav id="nav">
+        @vite(['resources/css/nav.css', 'resources/js/nav.js'])
+    </nav>
 
-<footer id="cookie_check"></footer>
+    <footer id="cookie_check"></footer>
 
-<script src="{{ asset('js/cookieFenster.js') }}"></script>
+    <script src="{{ asset('js/cookieFenster.js') }}"></script>
 </body>
 </html>

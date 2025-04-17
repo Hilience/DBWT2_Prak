@@ -1,31 +1,32 @@
 "use strict";
+import { menuData } from "./HomeMenuData.js";
 
-import {menuData} from "./HomeMenuData.js";
-
-
-function createMenu(menu, parent) {
+// Funktion zum Erstellen des Menüs
+function createMenu(menu) {
     const ul = document.createElement("ul");
     menu.forEach(function(item) {
         const li = document.createElement("li");
         li.textContent = item.title;
 
-        if(item.url){
+        if (item.url) {
             li.onclick = () => window.location.href = item.url;
         }
 
         if (item.children) {
-            li.classList.add("toggle");
-            const childUl = createMenu(item.children, li);
+            const childUl = createMenu(item.children);
             childUl.classList.add("submenu");
             li.appendChild(childUl);
-            li.onclick = function(e) {
-                e.stopPropagation();    // Verhindert das in bubbling phase parent auch gecklickt wird
-                childUl.style.display = childUl.style.display === "none" ? "block" : "none";
-            };
+            li.classList.add("has-submenu"); // Für Hover
         }
+
         ul.appendChild(li);
     });
     return ul;
 }
 
-document.getElementById("nav").appendChild(createMenu(menuData));
+document.addEventListener("DOMContentLoaded", function () {
+    const navContainer = document.getElementById("nav");
+    if (navContainer) {
+        navContainer.appendChild(createMenu(menuData));
+    }
+});

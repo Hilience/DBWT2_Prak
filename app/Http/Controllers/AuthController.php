@@ -23,36 +23,38 @@ class AuthController extends Controller
         $user = AbUser::where('ab_name', $request->ab_name)->first();
 
         if ($user && Hash::check($request->ab_password, $user->ab_password)) {
+            // Benutzername und weitere Daten in der Session speichern
             $request->session()->put('abalo_user', $user->ab_name);
             $request->session()->put('abalo_mail', $user->ab_mail);
+            $request->session()->put('abalo_user_id', $user->id); // Speichert auch die ID in der Session
             $request->session()->put('abalo_time', time());
-            return redirect()->route('articles');
+            return redirect()->route('home');
         }
 
         return redirect()->route('login')->with('error', 'Falsche Anmeldedaten.');
     }
 
-    // Registrieren eines neuen Benutzers
+    // Registrierung eines neuen Benutzers
     public function register(Request $request)
     {
-        // Validation
+        // Validierung
         $request->validate([
             'ab_name' => 'required|unique:ab_user',
             'ab_mail' => 'required|email|unique:ab_user',
             'ab_password' => 'required|confirmed|min:6',
         ]);
 
-        // Prepare user data from the request input
+        // Benutzer-Daten vorbereiten
         $userData = [
-            'ab_name' => $request->ab_name,         // User's name
-            'ab_mail' => $request->ab_mail,         // User's email
-            'ab_password' => Hash::make($request->ab_password), // Hash the password before saving
+            'ab_name' => $request->ab_name,
+            'ab_mail' => $request->ab_mail,
+            'ab_password' => Hash::make($request->ab_password), // Passwort vor Speicherung hashen
         ];
 
-        // Insert the user data into the database (no 'id' field provided)
-        DB::table('ab_user')->insert($userData);
+        // Benutzer in die Datenbank einfügen
+        $user = AbUser::create($userData);
 
-        // Redirect with a success message
+        // Erfolgsmeldung zurückgeben
         return redirect()->route('login')->with('success', 'Benutzer erfolgreich registriert. Bitte melden Sie sich an.');
     }
 
@@ -62,30 +64,21 @@ class AuthController extends Controller
         $request->session()->flush(); // Löscht alle Session-Daten
         return redirect()->route('login');
     }
-}
 
-/*
-public function login(Request $request) {
-    $request->session()->put('abalo_user', 'visitor');
-    $request->session()->put('abalo_mail', 'visitor@abalo.example.com');
-    $request->session()->put('abalo_time', time());
-    return redirect()->route('haslogin');
-}
+    // Methode zum Abrufen der Benutzer-ID aus der Session
+    public function getUserId(Request $request)
+    {
+        // Überprüfen, ob der Benutzer angemeldet ist
+        if ($request->session()->has('abalo_user_id')) {
+            // Benutzer-ID aus der Session zurückgeben
+            return response()->json([
+                'user_id' => $request->session()->get('abalo_user_id')
+            ]);
+        }
 
-public function logout(Request $request) {
-    $request->session()->flush();
-    return redirect()->route('haslogin');
-}
-
-
-public function isLoggedIn(Request $request) {
-    if($request->session()->has('abalo_user')) {
-        $r["user"] = $request->session()->get('abalo_user');
-        $r["time"] = $request->session()->get('abalo_time');
-        $r["mail"] = $request->session()->get('abalo_mail');
-        $r["auth"] = "true";
+        // Wenn der Benutzer nicht angemeldet ist
+        return response()->json([
+            'error' => 'Benutzer nicht angemeldet'
+        ], 401);
     }
-    else $r["auth"]="false";
-    return response()->json($r);
 }
-*/

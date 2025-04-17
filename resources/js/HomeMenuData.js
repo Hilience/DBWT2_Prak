@@ -1,7 +1,8 @@
 export const menuData = [
     { title: "Home", url: "home" },
-    { title: "Kategorien", url: "verkaufen"},
-    { title: "Verkaufen", url: "createarticle"},
+    { title: "Kategorien"},
+    { title: "Articles", url: "articles"},
+    { title: "Verkaufen", url: "verkaufen"},
     { title: "Unternehmen", children: [
             { title: "Philosophie", children: [
                     {title: "Unsere Ziele"},

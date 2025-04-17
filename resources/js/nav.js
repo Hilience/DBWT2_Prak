@@ -45,3 +45,15 @@ function setVisibilityForAll(node, visibility){
 }
 
 document.getElementById("nav").appendChild(createMenu(menuData));
+
+// Funktion zum Markieren des aktiven Menüpunkts
+(function markCurrentPage() {
+    const currentPath = window.location.pathname.replace(/^\/+|\/+$/g, ""); // z.B. "articles"
+
+    document.querySelectorAll("#nav li").forEach(li => {
+        const text = li.textContent.trim().toLowerCase();
+        if (currentPath && currentPath.includes(text)) {
+            li.classList.add("active");
+        }
+    });
+})();

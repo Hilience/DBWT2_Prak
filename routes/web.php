@@ -14,6 +14,7 @@ Route::get('/home', [HomeController::class, 'homeindex'])->name('home');
 
 Route::get('/testdata', [AbTestDataController::class, 'testindex'])->name('testdata');
 Route::get('/articles', [AbArticleController::class, 'articles'])->name('articles');
+Route::get('/verkaufen', [AbArticleController::class, 'meinearticles'])->name('verkaufen');
 
 // Route für die Seite zum Hinzufügen eines neuen Artikels
 Route::get('/createarticle', [AbArticleController::class, 'showCreateForm'])->name('createArticle');

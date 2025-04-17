@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artikelübersicht</title>
+    <title>Angebotene Artikel</title>
     @vite(['resources/css/nav.css', 'resources/js/nav.js'])
-    <link rel="stylesheet" href="{{ asset('css/articleSeite.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/meinearticleSeite.css') }}">
 </head>
 <body>
 <!-- Sticky Header -->
@@ -27,16 +27,18 @@
     </div>
 </header>
 
-<h1>Artikelübersicht</h1>
+<h1>Angebotene Artikel</h1>
 
+<!-- Flexbox Container für Suchfeld und Button -->
 <div class="search-and-create">
     <!-- Suchformular -->
-    <div class="search-form">
-        <form action="{{ url('/articles') }}" method="get">
-            <input type="text" name="search" value="{{ old('search', $search) }}" placeholder="Nach Artikel suchen">
-            <button type="submit">Suchen</button>
-        </form>
-    </div>
+    <form action="{{ url('/articles') }}" method="get" class="search-form">
+        <input type="text" name="search" value="{{ old('search', $search) }}" placeholder="Nach Artikel suchen">
+        <button type="submit">Suchen</button>
+    </form>
+
+    <!-- Button zum Erstellen eines neuen Artikels -->
+    <a href="{{ route('createArticle') }}" class="create-article-button">Neuen Artikel erstellen</a>
 </div>
 
 <!-- Artikel Tabelle -->
@@ -58,24 +60,24 @@
             <td>{{ $article->ab_price }}</td>
             <td>{{ $article->ab_description }}</td>
             <td>
-            @php
-                // Unterstützte Bildformate
-                $extensions = ['jpg', 'jpeg', 'png'];
-                $imageUrl = null;
-                foreach ($extensions as $ext) {
-                    $imagePath = public_path("images/{$article->id}.{$ext}");
-                    if (file_exists($imagePath)) {
-                        $imageUrl = asset("images/{$article->id}.{$ext}");
-                        break;
+                @php
+                    // Unterstützte Bildformate
+                    $extensions = ['jpg', 'jpeg', 'png'];
+                    $imageUrl = null;
+                    foreach ($extensions as $ext) {
+                        $imagePath = public_path("images/{$article->id}.{$ext}");
+                        if (file_exists($imagePath)) {
+                            $imageUrl = asset("images/{$article->id}.{$ext}");
+                            break;
+                        }
                     }
-                }
-            @endphp
+                @endphp
 
-            @if($imageUrl)
-                <img src="{{ $imageUrl }}" alt="{{ $article->ab_name }}" width="300" height="200">
-            @else
-                <p>Kein Bild verfügbar</p>
-            @endif
+                @if($imageUrl)
+                    <img src="{{ $imageUrl }}" alt="{{ $article->ab_name }}" width="300" height="200">
+                @else
+                    <p>Kein Bild verfügbar</p>
+                @endif
             </td>
         </tr>
     @empty

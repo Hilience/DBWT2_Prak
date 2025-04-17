@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('ab_price');
             $table->string('ab_description', 1000);
             $table->unsignedBigInteger('ab_creator_id');
-            $table->timestamps(); // Verwenden von created_at und updated_at
+            $table->timestamp('ab_createdate')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->foreign('ab_creator_id')->references('id')->on('ab_user')->onDelete('cascade');
         });
     }

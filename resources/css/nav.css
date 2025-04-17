@@ -47,6 +47,11 @@
     background-color: #278dfd;
 }
 
+#nav li.active {
+    background-color: #003e80;
+}
+
+
 /* Submenü Styling */
 .has-submenu .submenu {
     display: none;

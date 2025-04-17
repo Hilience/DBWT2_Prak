@@ -3,7 +3,16 @@ export const menuData = [
     { title: "Kategorien"},
     { title: "Verkaufen" },
     { title: "Unternehmen", children: [
-            { title: "Philosophie"},
-            { title: "Karriere"}
+            { title: "Philosophie", children: [
+                    {title: "Unsere Ziele"},
+                    {title: "Nachhaltigkeit", children: [
+                            {title: "Go green Kampagne"},
+                            {title: "Grüne Arbeitswege"}
+                        ]}
+                ]},
+            { title: "Karriere", children: [
+                    { title: "Job-Angebote" },
+                    { title: "Ausbildung" }
+                ]}
         ]}
 ];
